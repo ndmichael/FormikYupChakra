@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormik } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
 
@@ -22,52 +22,51 @@ const onSubmit = values => {
     console.log('Form Values ', values)
 }
 
-function StudentForm() {
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validationSchema
-    })
+/*******
+ *  Formik component: Replaced the useFormik hook with the Formik helper higher order component
+ *  Form component: Replaced the form jsx with Form component provided by Formik,
+ *                  no need to call the onSubmit props
+ *  Field Component: replaces the inpux html tag
+ *******/
 
-    console.log('Visited Fields ', formik.touched)
+function StudentForm() {
+    // const formik = useFormik({
+    //     initialValues,
+    //     onSubmit,
+    //     validationSchema
+    // })
+
+    // console.log('Visited Fields ', formik.touched)
 
     return (
-        <div>
-            <form onSubmit={formik.handleSubmit}>
+        <Formik 
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+        >
+            <Form>
                 <div className="form-control">
                     <label htmlFor="lastname">LastName: </label>
-                    <input type="text" id="lastname" name="lastname" 
-                    onChange={formik.handleChange} 
-                    onBlur={formik.handleBlur}
-                    value={formik.values.lastname} />
-                    {formik.touched.lastname && formik.errors.lastname ? <div className="error"><p>{formik.errors.lastname}</p></div> : null}
+                    <Field type="text" id="lastname" name="lastname" />
+                    <ErrorMessage name ="lastname" />
                 </div>
 
                 <div className="form-control">
                     <label htmlFor="firstname">FirstName: </label>
-                    <input type="text" id="firstname" name="firstname" 
-                    onChange={formik.handleChange} 
-                    onBlur={formik.handleBlur}
-                    value={formik.values.firstname} />
-                    {formik.touched.firstname && formik.errors.firstname ? <div className="error">{formik.errors.firstname}</div> : null}
+                    <Field type="text" id="firstname" name="firstname" />
+                    <ErrorMessage name="firstname" />
                 </div>
 
                 <div className="form-control">
                     <label htmlFor="email">Email: </label>
-                    <input type="text" id="email" name="email" 
-                    onChange={formik.handleChange} 
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email} />
-                    {formik.touched.email && formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
+                    <Field type="text" id="email" name="email" />
+                    <ErrorMessage name="email" />
                 </div>
 
                 <div className="form-control">
                     <label htmlFor="dob">Gate Of Birth: </label>
-                    <input type="date" id="dob" name="dob" 
-                    onChange={formik.handleChange} 
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dob} />
-                    {formik.touched.dob && formik.errors.dob ? <div className="error">{formik.errors.dob}</div> : null}
+                    <Field type="date" id="dob" name="dob"  />
+                    <ErrorMessage name="dob" />
                 </div>  
 
                 <div className="form-control">
@@ -78,8 +77,8 @@ function StudentForm() {
                 </div>
                 <br /> <br />
                 <button type="submit">Submit</button>
-            </form>
-        </div>
+            </Form>
+        </Formik>
     )
 }
 
