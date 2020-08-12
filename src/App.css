@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-label {
+/* label {
   font-weight: bold;
   display: flex;
   margin-bottom: 5px;
@@ -23,7 +23,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   /* margin-bottom: 20px; */
-}
+/*}
 
 .form-control {
   margin-bottom: 20px;
@@ -31,4 +31,4 @@ textarea {
 
 .error {
   color: red;
-}
+} */
