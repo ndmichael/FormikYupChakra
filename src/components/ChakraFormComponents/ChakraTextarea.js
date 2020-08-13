@@ -4,13 +4,11 @@ import {Textarea, FormControl, FormLabel, FormErrorMessage} from '@chakra-ui/cor
 
 
 function ChakraTextarea({label, name, ...rest}) {
-    console.log(name)
     return (
         <Field name={name}>
         
             {
                ({field, form}) =>{
-                   console.log(field, form)
                    return <FormControl isInvalid={form.errors[name] && form.touched[name]}>
                         <FormLabel htmlFor={name}>{label}</FormLabel>
                         <Textarea id={name} {...rest} {...field} />
