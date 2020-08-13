@@ -14,7 +14,7 @@ function FormikControl(props) {
             return <ChakraInput {...rest} />
         case 'chakraTextarea':
             return <ChakraTextarea {...rest} />
-        case 'ChakraSelect':
+        case 'chakraSelect':
             return <ChakraSelect {...rest} />
         case 'chakraRadio':
             return <ChakraRadio {...rest} />
